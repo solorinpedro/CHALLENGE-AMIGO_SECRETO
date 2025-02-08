@@ -33,32 +33,23 @@ function actualizarLista() {
 
 function sortearAmigo() {
     if (amigos.length < 2) {
-        alert("Por favor, añada al menos dos amigos para realizar el sorteo.");
+        alert("Por favor, añada almenos dos un amigo para realizar el sorteo.");
         return;
     }
 
-    // Crear un array de amigos para el sorteo
-    let amigosCopy = [...amigos];
-    let resultados = [];
+    // Seleccionar un nombre al azar de la lista
+    let indiceAleatorio = Math.floor(Math.random() * amigos.length);
+    let nombreSorteado = amigos[indiceAleatorio];
 
-    // Realizar el sorteo
-    for (let i = 0; i < amigos.length; i++) {
-        // Seleccionar un amigo al azar que no sea él mismo
-        let elegido = amigosCopy.splice(Math.floor(Math.random() * amigosCopy.length), 1)[0];
-        resultados.push(`${amigos[i]} le toca a ${elegido}`);
-    }
-
-    // Mostrar el resultado del sorteo
-    mostrarResultado(resultados);
+    // Mostrar el nombre sorteado
+    mostrarResultado(nombreSorteado);
 }
 
-function mostrarResultado(resultados) {
+function mostrarResultado(nombre) {
     let resultadoLista = document.getElementById("resultado");
     resultadoLista.innerHTML = ""; // Limpiar cualquier resultado previo
 
-    resultados.forEach((resultado) => {
-        let li = document.createElement("li");
-        li.textContent = resultado;
-        resultadoLista.appendChild(li);
-    });
+    let li = document.createElement("li");
+    li.textContent = `El amigo secreto es: ${nombre}`;
+    resultadoLista.appendChild(li);
 }
